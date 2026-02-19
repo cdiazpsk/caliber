@@ -1,0 +1,10 @@
+# Local env/secrets
+.env
+.env.*
+!.env.example
+*.xcconfig
+!*.example.xcconfig
+
+# Local app artifacts
+apps/web/node_modules/
+apps/web/.next/
