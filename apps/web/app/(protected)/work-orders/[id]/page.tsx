@@ -75,7 +75,9 @@ export default async function WorkOrderDetailPage({ params }: { params: { id: st
 
   const gallery = await Promise.all(
     (attachments ?? []).map(async (attachment) => {
-      const { data } = await supabase.storage.from("workorders").createSignedUrl(attachment.storage_path, 3600);
+      const { data } = await supabase.storage
+        .from("workorders")
+        .createSignedUrl(attachment.storage_path, 3600);
       return {
         id: attachment.id,
         storagePath: attachment.storage_path,
@@ -127,11 +129,27 @@ export default async function WorkOrderDetailPage({ params }: { params: { id: st
           <button type="submit">Upload photo</button>
         </form>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 8 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+            gap: 8,
+          }}
+        >
           {gallery.map((item) =>
             item.signedUrl ? (
-              <a key={item.id} href={item.signedUrl} target="_blank" rel="noreferrer" className="card">
-                <img src={item.signedUrl} alt={item.storagePath} style={{ width: "100%", borderRadius: 6 }} />
+              <a
+                key={item.id}
+                href={item.signedUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="card"
+              >
+                <img
+                  src={item.signedUrl}
+                  alt={item.storagePath}
+                  style={{ width: "100%", borderRadius: 6 }}
+                />
               </a>
             ) : null,
           )}

@@ -8,11 +8,7 @@ type SearchParams = {
   technician?: string;
 };
 
-export default async function WorkOrdersPage({
-  searchParams,
-}: {
-  searchParams: SearchParams;
-}) {
+export default async function WorkOrdersPage({ searchParams }: { searchParams: SearchParams }) {
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -41,11 +37,7 @@ export default async function WorkOrdersPage({
   const { data: workOrders } = await query;
 
   const { data: techOptions } = canFilterTechnician
-    ? await supabase
-        .from("profiles")
-        .select("id, full_name")
-        .eq("role", "tech")
-        .order("full_name")
+    ? await supabase.from("profiles").select("id, full_name").eq("role", "tech").order("full_name")
     : { data: [] as { id: string; full_name: string | null }[] };
 
   return (

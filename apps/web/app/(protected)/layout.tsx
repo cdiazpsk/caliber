@@ -22,7 +22,9 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
           {profile?.role === "admin" ? <Link href="/admin/assignments">PM Assignments</Link> : null}
         </div>
         <div className="row">
-          <small>{profile?.full_name ?? user?.email} ({profile?.role ?? "unknown"})</small>
+          <small>
+            {profile?.full_name ?? user?.email} ({profile?.role ?? "unknown"})
+          </small>
           <SignOutButton />
         </div>
       </header>
