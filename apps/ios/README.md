@@ -21,6 +21,8 @@ The app expects these values in `SupabaseConfig.swift` (or inject from an xcconf
 
 Current scaffold reads from process environment first, then falls back to placeholders.
 
+If you prefer env-style templates for local tooling, copy `apps/ios/.env.example` to a local untracked `.env` file used by your scripts.
+
 ## Build
 1. Create/open an Xcode SwiftUI project under `/apps/ios` and add these files.
 2. Set iOS target to 17+ (for modern SwiftUI + async/await ergonomics).
